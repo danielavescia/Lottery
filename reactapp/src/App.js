@@ -8,7 +8,6 @@ function App() {
             <header className="App-header">
                 <div className="h1-lottery">
                     <h1>Lotery</h1>
-                    <Navbar></Navbar>
                     <Form></Form>
                 </div>
             </header>

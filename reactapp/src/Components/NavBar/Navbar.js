@@ -1,6 +1,7 @@
+import  "./Navbar.css";
 
-const menuOptions = ['TICKETS', 'RESULTS'];
-const links = ['/Tickets', '/Results'];
+const menuOptions = ['TICKETS'];
+const links = ['/Tickets'];
 
 function Navbar()
 {

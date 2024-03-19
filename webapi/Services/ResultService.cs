@@ -29,7 +29,7 @@ namespace webapi.Services
                 GenerateFirstResult( results ); //If resultList is empty, then it will receive 5 different random numbers
                 HasWinner( ticketsList, results );
 
-                if ( results.HasWinner == true ) //on the first attempt, it has a winning ticket, then return the result
+                if ( results.isThereWinner == true ) //on the first attempt, it has a winning ticket, then return the result
                 {
                     return results;
                 }
@@ -49,7 +49,7 @@ namespace webapi.Services
             }
 
 
-            if ( results.HasWinner != true && maxAttempts > 0 )
+            if ( results.isThereWinner != true && maxAttempts > 0 )
             {
                 int numberDrawn = Utils.GenerateAnotherNumber( results.NumbersDrawn );
 
@@ -90,12 +90,12 @@ namespace webapi.Services
 
                 if ( hasSameNumbers == true )
                 {
-                    results.HasWinner = true;
+                    results.isThereWinner = true;
                     results.WinnerTicketId.Add( ticket.Id );
 
                 }
             }
-            results.HasWinner = false;
+            results.isThereWinner = false;
 
             return results;
 

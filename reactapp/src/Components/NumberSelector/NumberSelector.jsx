@@ -11,28 +11,39 @@ function createArrayNumbers() {
 
 function NumberSelector() {
 
-    const [selectedNumbers, setSelectedNumber] = useState({     //creating state for selectednumbers
-        number1: null,
-        number2: null,
-        number3: null,
-        number4: null,
-        number5: null,
-    });
+    const array = Array.from({ length: 5 }, () => null); //creating array that accepts 5 numbers for the lottery ticket
 
-    const [errors, setErros] = useState({}) //creating state for errors
+    const [selectedNumber, setSelectedNumber] = useState(array);   //creating state for selectednumber with array
+
+    const [errors, setErros] = useState() //creating state for errors
 
     var numbers = createArrayNumbers(); //creating array of numbers in the range 0-50
 
     const handleNumberClick = (number) => {
-        //setSelectedNumber(number);
-    };
+        let arrayNumber = [...selectedNumber]
 
+        if (selectedNumber.includes(null)) {   //if array its not full
+            arrayNumber = [...selectedNumber]; //receives array selectedNumber
+            let index = arrayNumber.indexOf(null); //receives the first index that has null
+            arrayNumber[index] = number; //receives the clicked number into the index
+            setSelectedNumber(arrayNumber);
+            
+
+        } else {
+            arrayNumber = [...selectedNumber];
+            arrayNumber.shift(); //eliminates the first one in the array
+            arrayNumber.push(number); //push the number to the end
+            setSelectedNumber(arrayNumber);
+        }
+        console.log(selectedNumber); 
+    };
+   
     return (
         <div className="gamble-container">
             <div className="number-selector-container">
                 {numbers.map((number) => (
                     <div
-                        key={number - 1}
+                        key={number}
                         className="div-number"
                         onClick={() => handleNumberClick(number)}
                         value={number}

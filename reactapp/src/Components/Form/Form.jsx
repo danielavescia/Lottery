@@ -4,11 +4,15 @@ import { useState } from 'react';
 
 function Form() {
 
-    const [cpf, setCpf] = useState({});
+    const [cpf, setCpf] = useState('');
+    const [name, setName] = useState('');
     const [errors, setErrors] = useState({});
     const [submitting, setSubmitting] = useState(false);
 
-    const handleChange = (e) => {
+    const handleCpfChange = (e) => {
+        setCpf({ [e.target.cpf]: e.target.value });
+    };
+    const handleNameChange = (e) => {
         setCpf({ [e.target.cpf]: e.target.value });
     };
 
@@ -42,20 +46,37 @@ function Form() {
                 <label className="label-form">
                     CPF:
                     <input
-                                className="input-cpf-form"
+                                className="input-form"
                                 type="text"
                                 size="30"
-                                value={cpf}
+                                //value={cpf}
                                 placeholder="XXX.XXX.XXX-XX"
-                                onChange={handleChange}
+                                onChange={handleCpfChange}
                     />
-                </label>
-                <span className="error">{errors["name"]}</span>
+                        </label>
+
+                        <span className="error">{errors["name"]}</span>
+                        <label className="label-form">
+                            Nome:  
+                            <input
+                                className="input-form"
+                                type="text"
+                                size="100"
+                                //value={nome}
+                                placeholder="Digite seu nome"
+                                onChange={handleNameChange}
+                            />
+                        </label>
+
+                        <span className="error">{errors["name"]}</span>
              </form>
              </div>
             </section>
             <NumberSelector />
-            <button className="button-form">Send</button>
+            <div className="button-container">
+            <button className="button-form">Enviar</button>
+                <button className="button-form">Aposta Surpresinha</button>
+            </div>
         </div>
 
     );
