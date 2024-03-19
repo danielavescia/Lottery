@@ -1,0 +1,59 @@
+.gamble-container {
+    margin-top: 5rem;
+    flex-direction: column;
+    align-self:center;
+}
+
+.number-selector-container {
+    display: grid;
+    margin-top: 5rem;
+    height: max-content;
+    width:max-content;
+    grid-template-rows: repeat(5, 4rem);
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.5rem;
+    align-content: center;
+    justify-content: center;
+    background-color: #F0F0F0;
+    padding: 3rem 3rem;
+    border-radius:1rem;
+}
+
+.div-number {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    border: 0.1rem solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    cursor: pointer;
+    margin: 5px 5px;
+    background-color: #F45050;
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+    font-family: Roboto;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: white;
+}
+
+.div-number-selected {
+    background-color: #cccccc;
+}
+
+.button-form {
+    margin-top: 3rem;
+    width: 10rem;
+    height: 4rem;
+    background-color: #F9D949;
+    color: black;
+    font-family: Roboto;
+    font-size: 1.5rem;
+    font-weight: 400;
+    border: none;
+    cursor: pointer;
+    border-radius:2rem;
+    box-shadow: 0.5px 0.5px 0px rgba(0, 0, 0, 0.1);
+    align-self: center;
+}

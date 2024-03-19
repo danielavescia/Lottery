@@ -1,0 +1,7 @@
+.h1-lottery {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    flex-direction: row;
+    background-color: #3C486B;
+}

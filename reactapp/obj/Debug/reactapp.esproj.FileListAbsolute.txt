@@ -1,0 +1,2 @@
+C:\Users\danie\OneDrive\Área de Trabalho\DanielaVesciaMennaBarreto\Lottery\reactapp\obj\Debug\reactapp.esproj.SuggestedBindingRedirects.cache
+C:\Users\danie\OneDrive\Área de Trabalho\DanielaVesciaMennaBarreto\Lottery\reactapp\obj\Debug\reactapp.esproj.CoreCompileInputs.cache
