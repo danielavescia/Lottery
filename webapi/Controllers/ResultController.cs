@@ -14,7 +14,7 @@ namespace webapi.Controllers
         private readonly IMapper mapper; // maps and transforms domain/dto or dto/domain
         private readonly ResultRepository resultRepository; //An object of TicketRepository that is responsible for CRUD operations
 
-        public ResultController( DataPersistance dbContext, IMapper mapper, ResultRepository resultRepository ) //DI
+        public ResultController(/* DataPersistance dbContext,*/ IMapper mapper, ResultRepository resultRepository ) //DI
         {
             this.dbContext = dbContext;
             this.mapper = mapper;

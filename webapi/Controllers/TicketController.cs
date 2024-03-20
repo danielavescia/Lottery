@@ -11,14 +11,14 @@ namespace webapi.Controllers
     [ApiController]
     public class TicketController : Controller
     {
-        private readonly DataPersistance dbContext; //An object of DataPersistance that simulates a dbContext
+        //private readonly DataPersistance dbContext; //An object of DataPersistance that simulates a dbContext
         private readonly IMapper mapper; // maps and transforms domain/dto or dto/domain
         private readonly TicketRepository ticketRepository; //An object of TicketRepository that is responsible for CRUD operations
      
 
-        public TicketController( DataPersistance dbContext, IMapper mapper, TicketRepository ticketRepository )
+        public TicketController(/* DataPersistance dbContext,*/ IMapper mapper, TicketRepository ticketRepository )
         {
-            this.dbContext = dbContext;
+            //this.dbContext = dbContext;
             this.mapper = mapper; 
             this.ticketRepository = ticketRepository;
         }

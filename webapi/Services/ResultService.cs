@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+using webapi.Data;
 using webapi.Models.Domain;
 
 
@@ -6,10 +8,12 @@ namespace webapi.Services
 {
     public class ResultService
     {
+        private readonly DataPersistance dbContext; //An object of DataPersistance that simulates a dbContext
         private readonly List<Ticket> ticketsList;
         private readonly Result results;
-        public ResultService( List<Ticket> ticketList, Result results )
+        public ResultService( DataPersistance dbContext, List<Ticket> ticketList, Result results )
         {
+            this.dbContext = dbContext;
             this.ticketsList = ticketsList;
             this.results = results;
         }
@@ -19,21 +23,21 @@ namespace webapi.Services
             int maxAttempts = 25;
             Result results = new();
 
-            if ( ticketsList == null )
+            if ( ticketsList.Count == 0 )
             {
-                throw new Exception( "Please, You ned to bet first!" );
+                throw new Exception( "Please, You need to bet first!" );
             }
 
             else if ( ticketsList != null & results.NumbersDrawn == null )
             {
                 GenerateFirstResult( results ); //If resultList is empty, then it will receive 5 different random numbers
-                HasWinner( ticketsList, results );
+                HasWinner( ticketsList, results ); 
 
-                if ( results.isThereWinner == true ) //on the first attempt, it has a winning ticket, then return the result
-                {
-                    return results;
-                }
+            }
 
+            else if ( results.IsThereWinner == true )  //checks if there is a winner
+            {
+                return results;
             }
 
             return GenerateResults( ticketsList, results, maxAttempts ); //If the winning ticket is not found, then another number will be drawn recursively
@@ -49,15 +53,21 @@ namespace webapi.Services
             }
 
 
-            if ( results.isThereWinner != true && maxAttempts > 0 )
+            else if ( results.IsThereWinner == false && maxAttempts > 0 )  //if there isnt winner then generate another number and add to results.
             {
-                int numberDrawn = Utils.GenerateAnotherNumber( results.NumbersDrawn );
-
-                results.NumbersDrawn.Add( numberDrawn );
+                int numberDrawn = Utils.GenerateAnotherNumber( results.NumbersDrawn ); //generate another number and add into results                                                                         
+                results.NumbersDrawn.Add( numberDrawn );                               //then verifies if there is a winner after that
+                HasWinner( ticketList,  results );
 
             }
 
-            return GenerateResults( ticketList, results, maxAttempts-1 );
+            else if ( results.IsThereWinner == true )  //checks if there is a winner
+            {
+               
+                return results;
+            }
+
+            return GenerateResults( ticketList, results, maxAttempts-1 ); 
         }
 
 
@@ -71,16 +81,17 @@ namespace webapi.Services
             {
                 randomNumber = Utils.GenerateAnotherNumber( results.NumbersDrawn );
                 results.NumbersDrawn.Add( randomNumber );
+
             }
 
             results.NumbersDrawn = results.NumbersDrawn.OrderBy( number => number ).ToList();
 
-            //return results;
         }
 
-        public Result HasWinner( List<Ticket> ticketsList, Result results )
+        public Result HasWinner( List<Ticket> ticketsList, Result results )  //verifies if there is a winner by the intersection
+                                                                             //between equals numbers in ticket.SelectedNumbers andresults.NumbersDrawn
         {
-
+            results.WinnerTicketId = new List<int>();
             bool hasSameNumbers;
 
             foreach ( Ticket ticket in ticketsList )
@@ -88,18 +99,23 @@ namespace webapi.Services
 
                 hasSameNumbers = ( ( ticket.SelectedNumbers ).Intersect( results.NumbersDrawn ).Count() == 5 );
 
-                if ( hasSameNumbers == true )
+                if ( hasSameNumbers == true ) //if 5 numbers are equal in both lists then change results attributes 
                 {
-                    results.isThereWinner = true;
-                    results.WinnerTicketId.Add( ticket.Id );
+                    int winnerId = ticket.Id;
+                    results.IsThereWinner = true;
+                    results.WinnerTicketId.Add( winnerId );
 
                 }
+                else 
+                {
+                    results.IsThereWinner = false;
+                }
             }
-            results.isThereWinner = false;
+           
 
             return results;
 
         }
     }
-    
+
 }

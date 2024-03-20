@@ -35,3 +35,5 @@ C:\Users\danie\OneDrive\Área de Trabalho\DanielaVesciaMennaBarreto\Lottery\weba
 C:\Users\danie\OneDrive\Área de Trabalho\DanielaVesciaMennaBarreto\Lottery\webapi\obj\Release\net7.0\webapi.pdb
 C:\Users\danie\OneDrive\Área de Trabalho\DanielaVesciaMennaBarreto\Lottery\webapi\obj\Release\net7.0\webapi.genruntimeconfig.cache
 C:\Users\danie\OneDrive\Área de Trabalho\DanielaVesciaMennaBarreto\Lottery\webapi\obj\Release\net7.0\ref\webapi.dll
+C:\Users\danie\OneDrive\Área de Trabalho\DanielaVesciaMennaBarreto\Lottery\webapi\bin\Release\net7.0\nunit.framework.dll
+C:\Users\danie\OneDrive\Área de Trabalho\DanielaVesciaMennaBarreto\Lottery\webapi\bin\Release\net7.0\nunit.framework.legacy.dll
