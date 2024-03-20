@@ -6,7 +6,7 @@ using webapi.Repository;
 
 namespace webapi.Controllers
 {
-    [Route( "result/[controller]" )]
+    [Route( "/[controller]" )]
     [ApiController]
     public class ResultController : Controller
     {

@@ -6,7 +6,7 @@ namespace webapi.Models.DTO
     public class CreateTicketDto
     {
         [Required]
-        [MaxLength( 12, ErrorMessage = "Cpf has 12 numbers! Please, try again!" )] // requirement to cpf number to create TicketDto
+        [MaxLength( 11, ErrorMessage = "Cpf has 11 numbers! Please, try again!" )] // requirement to cpf number to create TicketDto
         public required string Cpf { get; set; }
 
         [Required( ErrorMessage = "Please, enter your name to validate your lottery ticket!" )]

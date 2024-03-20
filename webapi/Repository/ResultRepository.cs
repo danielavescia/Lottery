@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using webapi.Data;
+﻿using webapi.Data;
 using webapi.Models.Domain;
 using webapi.Services;
 
@@ -22,7 +21,7 @@ namespace webapi.Repository
             return await dbContext.ReadResultsFromJson(); //Reads json to get the results from this session
         }
 
-        public async Task<Result> GenerateResultAsync( ) 
+        public async Task<Result> GenerateResultAsync() 
         {
             List<Ticket> ticketsList = new( );
             ticketsList = await dbContext.ReadTicketsFromJson();

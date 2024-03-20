@@ -86,7 +86,7 @@ namespace webapi.Services
             foreach ( Ticket ticket in ticketsList )
             {
 
-                hasSameNumbers = ( ( ticket.SelectedNumbers ).Intersect( results.NumbersDrawn ).Count() > 4 );
+                hasSameNumbers = ( ( ticket.SelectedNumbers ).Intersect( results.NumbersDrawn ).Count() == 5 );
 
                 if ( hasSameNumbers == true )
                 {

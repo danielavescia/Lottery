@@ -7,7 +7,7 @@ using webapi.Repository;
 using webapi.Services;
 
 
-//JsonCleaner.JsonCleanerFiles(); //clean the Json file related to tickets and result data 
+JsonCleaner.JsonCleanerFiles(); //clean the Json file related to tickets and result data 
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,6 +42,8 @@ builder.Services.AddScoped<IResultRepository, ResultRepository>();
 builder.Services.AddAutoMapper( typeof( AutoMapperProfiles ) );//injecting mapping into the controller 
 
 
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -52,6 +54,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors( options =>
+{
+    options.AllowAnyOrigin(); 
+    options.AllowAnyMethod(); 
+    options.AllowAnyHeader(); 
+} );
 
 app.UseAuthorization();
 

@@ -9,32 +9,25 @@ function createArrayNumbers() {
     return numbers;
 }
 
-function NumberSelector() {
+function NumberSelector(props) {
 
-    const array = Array.from({ length: 5 }, () => null); //creating array that accepts 5 numbers for the lottery ticket
-
-    const [selectedNumber, setSelectedNumber] = useState(array);   //creating state for selectednumber with array
+    const selectedNumber = props.selectedNumber;
 
     const [errors, setErros] = useState() //creating state for errors
 
     var numbers = createArrayNumbers(); //creating array of numbers in the range 0-50
 
     const handleNumberClick = (number) => {
-        let arrayNumber = [...selectedNumber]
-
+       
         if (selectedNumber.includes(null)) {   //if array its not full
-            arrayNumber = [...selectedNumber]; //receives array selectedNumber
-            let index = arrayNumber.indexOf(null); //receives the first index that has null
-            arrayNumber[index] = number; //receives the clicked number into the index
-            setSelectedNumber(arrayNumber);
-            
+            let index = selectedNumber.indexOf(null); //receives the first index that has null
+            selectedNumber[index] = number; //receives the clicked number into the index
 
         } else {
-            arrayNumber = [...selectedNumber];
-            arrayNumber.shift(); //eliminates the first one in the array
-            arrayNumber.push(number); //push the number to the end
-            setSelectedNumber(arrayNumber);
-        }
+            selectedNumber.shift(); //eliminates the first one in the array
+            selectedNumber.push(number); //push the number to the end
+        }   
+        
         console.log(selectedNumber); 
     };
    
