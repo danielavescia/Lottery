@@ -1,7 +1,10 @@
 .h1-lottery {
+    width: max-width;
+    height: 5rem;
+    background-color: #D39B3D;
     display: flex;
-    height: fit-content;
-    justify-content: center;
-    flex-direction: row;
-    background-color: #F8F1F1;
+    align-content:center;
+    justify-content:center;
+    margin-bottom: 1rem;
 }
+

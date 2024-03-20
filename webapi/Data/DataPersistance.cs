@@ -38,7 +38,7 @@ namespace webapi.Data
                 
             }
         }
-        public async Task<List<Result>> ReadResultsFromJson()
+        public async Task<Result> ReadResultsFromJson()
         {
             string fileName = "result.json";
             string path = Path.Combine( Environment.CurrentDirectory, @"Data\", fileName );
@@ -54,7 +54,7 @@ namespace webapi.Data
                 using StreamReader reader = new( fileStream );
                 {
                     var json = await reader.ReadToEndAsync();
-                    return JsonConvert.DeserializeObject<List<Result>>( json ); //Deserializes the JSON to a Result List.
+                    return JsonConvert.DeserializeObject<Result>( json ); //Deserializes the JSON to a Result List.
                 }
 
             }

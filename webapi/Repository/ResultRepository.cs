@@ -8,7 +8,7 @@ namespace webapi.Repository
     {
         private readonly DataPersistance dbContext;
         private readonly ResultService resultService;
-        
+
 
         //dependecy injection
         public ResultRepository( DataPersistance dbContext, ResultService resultService )
@@ -16,20 +16,13 @@ namespace webapi.Repository
             this.dbContext = dbContext;
             this.resultService = resultService;
         }
-        public async Task<List<Result>> GetAllResultsAsync()
+        public async Task<Result> GetAllResultsAsync()
         {
-            return await dbContext.ReadResultsFromJson(); //Reads json to get the results from this session
-        }
-
-        public async Task<Result> GenerateResultAsync() 
-        {
-            List<Ticket> ticketsList = new( );
-            ticketsList = await dbContext.ReadTicketsFromJson();
-            Result domainResults= resultService.GenerateResults( ticketsList );
+            var ticketsList = await dbContext.ReadTicketsFromJson();
+            Result domainResults = resultService.GenerateResults( ticketsList );
             dbContext.WriteResultsToJson( domainResults );
-
-            return domainResults;
-
+            return domainResults; 
         }
+
     }
 }

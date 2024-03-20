@@ -1,13 +1,12 @@
 import "./App.css";
 import Form from "./Components/Form/Form";
-import Navbar from "./Components/NavBar/Navbar";
+
 
 function App() {
     return (
         <div className="App">
             <header className="App-header">
                 <div className="h1-lottery">
-                    <h1>Lotery</h1>
                     <Form></Form>
                 </div>
             </header>

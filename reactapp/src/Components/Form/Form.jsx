@@ -8,58 +8,79 @@ function Form() {
     const array = Array.from({ length: 5 }, () => null); //creating array that accepts 5 numbers for the lottery ticket
     const [cpf, setCpf] = useState('');
     const [name, setName] = useState('');
-    const [selectedNumber, setSelectedNumber] = useState(array);   //creating state for selectednumber with array
-    const [errors, setErrors] = useState({});
-    const [submitting, setSubmitting] = useState(false);
- 
+    const [selectedNumbers, setSelectedNumber] = useState(array);   //creating state for selectednumber with array
+    
 
-    const handleCpfChange = (e) => { //tracks the cpf 
+    const handleCpfChange = (e) => { //tracks  events in cpf variable
         setCpf(e.target.value);
     };
 
-    const handleNameChange = (e) => { //tracks the name 
+    const handleNameChange = (e) => { // tracks events in name variable
         setName(e.target.value);
     };
      
     const handleSubmit = async (e) => {   //
-        e.preventDefault(); //prevent page to refresh
-        let ticketLottery = { cpf, name, selectedNumber };
+        //e.preventDefault(); //prevent page to refresh
+        let ticketLottery = {  //creating body for POST request
+            "Cpf": cpf,
+            "Name": name,
+            "SelectedNumbers": selectedNumbers
+        };
+
         console.log(ticketLottery);
 
         try {
-            const response = await axios.post('https://localhost:7030/Ticket', ticketLottery);
+
+            const response = await axios.post('https://localhost:7030/Ticket', ticketLottery); //http request
             console.log('Response:', response.data);
+
         } catch (error) {
-            console.error('Error submitting data:', error);
+
+            console.error('Error response:', error);
         }
     };
-   
-  
-        //setErrors(validateCpf(cpf));
-        //setSubmitting(true);
 
-    const validateCpf = (cpfValue) => {
+    const handleSubmitRandomTicket = async (e) => {
+       // e.preventDefault(); //prevent page to refresh
+        let randomTicketLottery = {  //creating body for POST request
+            "Cpf": cpf,
+            "Name": name,
+        };
 
-        const regexCpf = /^\d{11}$/; // only numbers with 11 digits
+        try {
 
-        let errors = {};
-        if (cpfValue.length < 11) {
-            errors.cpf = "Check your cpf number! It should have eleven numbers";
+            const response = await axios.post('https://localhost:7030/randomTicket', randomTicketLottery); //http POST request
+            console.log('Response:', response.data);
+
+        } catch (error) {
+
+            console.error('Error response:', error);
         }
-        if (!cpfValue.test(regexCpf)) {
-            errors.cpf = "Are accepted just numbers";
-            return errors;
-        }
+        
+    }
+    
+    const handleGetResults = async (e) => {
 
+        try {
+
+            const response = await axios.get('https://localhost:7030/Result'); //http GET request
+            console.log('Response:', response.data);
+
+        } catch (error) {
+
+            console.error('Error response:', error);
+        }
     };
+    
 
     return (
         <div >
             <section>
-            <div className="form-container">
+                <p className= "form-paragraph"> Digite os dados abaixo para completar a sua aposta:</p>
+                <div className="form-container">
                     <form>
-                <label className="label-form"> CPF:</label>
-                    <input
+                        <label className="label-form"> CPF:</label>
+                            <input
                                 className="input-form"
                                 type="text"
                                 size="11"
@@ -67,9 +88,8 @@ function Form() {
                                 placeholder="XXX.XXX.XXX-XX"
                                 required
                                 onChange={handleCpfChange}
-                    />
-                
-                        <span className="error">{errors["name"]}</span>
+                            />
+
                         <label className="label-form"> NOME:  </label>
                             <input
                                 className="input-form"
@@ -80,17 +100,17 @@ function Form() {
                                 placeholder="Digite seu nome"
                                 onChange={handleNameChange}
                             />
-                        <span className="error">{errors["name"]}</span>
-             </form>
-             </div>
+                     </form>
+                </div>
             </section>
-            <NumberSelector selectedNumber={selectedNumber} />
+            <NumberSelector selectedNumber={selectedNumbers} />
             <p>{console.log(cpf)}</p>
             <p>{console.log(name)}</p>
-            <p>{console.log(selectedNumber) }</p>
+            <p>{console.log(selectedNumbers) }</p>
             <div className="button-container ">
                 <button className="button-form" onClick={(e) => handleSubmit(e)}>Enviar</button>
-                <button className="button-form"> Aposta Surpresinha</button>
+                <button className="button-form" onClick={(e) => handleSubmitRandomTicket(e)}> Aposta Surpresinha</button>
+                <button className="button-form" onClick={(e) => handleGetResults(e)}> Encerrar Apostas</button>
             </div>
         </div>
 

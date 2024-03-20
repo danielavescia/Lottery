@@ -20,13 +20,12 @@ namespace webapi.Controllers
             this.mapper = mapper;
             this.resultRepository = resultRepository;
         }
-
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var resulttDomain = await resultRepository.GetAllResultsAsync(); //Reads json to get the tickets from this session
+            var resultDomain = await resultRepository.GetAllResultsAsync(); //Reads json to get the tickets from this session
 
-            var resultDto = mapper.Map < List < ResultDto >> ( resulttDomain ); //Mapping RegionDomain to RegionDto
+            var resultDto = mapper.Map<ResultDto>( resultDomain ); //Mapping RegionDomain to RegionDto
 
             if ( resultDto == null )
             {
@@ -36,21 +35,5 @@ namespace webapi.Controllers
             return Ok( resultDto ); //return status 200
         }
 
-        [HttpPost]
-
-        public async Task<IActionResult> GenerateResultAsync() 
-        {
-            var resultDomain = await resultRepository.GenerateResultAsync();
-
-            var resultDTO = mapper.Map< ResultDto > ( resultDomain );
-
-            if ( resultDTO == null ) 
-            {
-                return BadRequest();
-            }
-
-            return Ok( resultDTO );
-        }
     }
-
 }

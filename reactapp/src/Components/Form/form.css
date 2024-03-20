@@ -1,3 +1,13 @@
+
+section {
+    margin-top: 2rem;
+}
+.form-paragraph {
+    font-family: Arial;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
 .form-container {
     display: flex;
     flex-direction: column;
@@ -5,15 +15,14 @@
     justify-content: center;
     gap: 2rem;
     margin-top: 2rem;
+    margin-bottom:0rem;
     width: 55rem;
-    height: 9rem;
+    height: 7.5rem;
     border-radius: 1rem;
     background-color: #025464;
     padding: 3rem 3rem;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
-
-
 
 .label-form {
     font-family: 'Inter', sans-serif;
@@ -26,7 +35,7 @@
 
 .input-form {
     padding-left: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     width: 42rem;
     height: 3rem;
     border-radius: 0.5rem;
@@ -58,12 +67,12 @@ input::placeholder {
 }
 
 .button-form {
-    margin: 2rem 2rem;
+    margin: 1rem 1rem;
     width: 19rem;
     height: 3.8rem;
     background-color: #E57C23;
     color: black;
-    font-family: Roboto;
+    font-family: Arial;
     font-size: 1.5rem;
     font-weight: 400;
     border: none;

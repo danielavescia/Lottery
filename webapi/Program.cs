@@ -41,9 +41,6 @@ builder.Services.AddScoped<IResultRepository, ResultRepository>();
 
 builder.Services.AddAutoMapper( typeof( AutoMapperProfiles ) );//injecting mapping into the controller 
 
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

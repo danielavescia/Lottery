@@ -11,7 +11,7 @@ function createArrayNumbers() {
 
 function NumberSelector(props) {
 
-    const selectedNumber = props.selectedNumber;
+    const selectedNumbers = props.selectedNumber;
 
     const [errors, setErros] = useState() //creating state for errors
 
@@ -19,16 +19,16 @@ function NumberSelector(props) {
 
     const handleNumberClick = (number) => {
        
-        if (selectedNumber.includes(null)) {   //if array its not full
-            let index = selectedNumber.indexOf(null); //receives the first index that has null
-            selectedNumber[index] = number; //receives the clicked number into the index
+        if (selectedNumbers.includes(null)) {   //if array its not full
+            let index = selectedNumbers.indexOf(null); //receive the first index that has null
+            selectedNumbers[index] = parseInt(number); //receive the clicked number into the index and parses it to int
 
         } else {
-            selectedNumber.shift(); //eliminates the first one in the array
-            selectedNumber.push(number); //push the number to the end
+            selectedNumbers.shift(); //eliminates the first one in the array
+            selectedNumbers.push(parseInt(number)); //push the number to the end and parses it to int
         }   
         
-        console.log(selectedNumber); 
+        console.log(selectedNumbers); 
     };
    
     return (

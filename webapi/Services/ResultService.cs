@@ -6,11 +6,11 @@ namespace webapi.Services
 {
     public class ResultService
     {
-        private readonly List<Ticket> ticketList;
+        private readonly List<Ticket> ticketsList;
         private readonly Result results;
         public ResultService( List<Ticket> ticketList, Result results )
         {
-            this.ticketList = ticketList;
+            this.ticketsList = ticketsList;
             this.results = results;
         }
 
@@ -19,12 +19,12 @@ namespace webapi.Services
             int maxAttempts = 25;
             Result results = new();
 
-            if ( ticketList == null )
+            if ( ticketsList == null )
             {
                 throw new Exception( "Please, You ned to bet first!" );
             }
 
-            else if ( ticketList != null & results.NumbersDrawn == null )
+            else if ( ticketsList != null & results.NumbersDrawn == null )
             {
                 GenerateFirstResult( results ); //If resultList is empty, then it will receive 5 different random numbers
                 HasWinner( ticketsList, results );
