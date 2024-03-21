@@ -14,7 +14,7 @@ O objetivo é permitir que um usuário possa registrar apostas, incluindo a opç
 
 1. Abra o terminal de comando.
 2. Navegue até o diretório do projeto da Web API.
-3. Para instalar as dependências execute o comando: `npm instal`.
+3. Para instalar as dependências execute o comando: `npm install`.
 4. Execute o comando: `dotnet run`.
 
 5. Abra outro terminal de comando.
