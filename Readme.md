@@ -1,16 +1,23 @@
-Projeto: SISTEMA DE APOSTAS
-DescriÁ„o: O projeto consiste no desenvolvimento de um sistema de controle de apostas
+# Projeto: SISTEMA DE APOSTAS
 
-O objetivo È permitir que um usu·rio possa  registrar apostas, registrar apostas com sorteio de n˙meros aleatÛrios.
-Requisitos
-vers„o: .net 6.0 ou superior)
+## Descri√ß√£o
+O projeto consiste no desenvolvimento de um sistema de controle de apostas.
 
-Uso
-1 - Abra o terminal de comando 2 - Navegue atÈ diretÛrio do projeto da webapi 3 - Execute o comando :dotnet run
-1 - Abra outro terminal de comando 2 - Navegue atÈ diretÛrio do projeto do reactapp 3 - Execute o comando :npm start
+O objetivo √© permitir que um usu√°rio possa registrar apostas, incluindo a op√ß√£o de registrar apostas com sorteio de n√∫meros aleat√≥rios.
 
-OU
+## Requisitos
+- Vers√£o: .NET 6.0 ou superior
 
-Compile o programa na IDE e clique em RUN;
+## Uso
+### Utilizando o Terminal de Comando
+1. Abra o terminal de comando.
+2. Navegue at√© o diret√≥rio do projeto da Web API.
+3. Execute o comando: `dotnet run`.
 
+4. Abra outro terminal de comando.
+5. Navegue at√© o diret√≥rio do projeto do ReactApp.
+6. Execute o comando: `npm start`.
 
+### Utilizando uma IDE
+- Compile o programa na IDE.
+- Clique em "Run".
