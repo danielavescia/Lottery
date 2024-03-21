@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Net.Sockets;
 using webapi.Data;
 using webapi.Models.Domain;
 
@@ -20,8 +21,9 @@ namespace webapi.Services
 
         public Result GenerateResults( List<Ticket> ticketsList )
         {
-            int maxAttempts = 25;
+            int maxAttempts = 45;
             Result results = new();
+            
 
             if ( ticketsList.Count == 0 )
             {
@@ -49,6 +51,7 @@ namespace webapi.Services
 
             if ( maxAttempts == 0 ) //stop condition - when attempts ==0 
             {
+                results.Attempts = 25;
                 return results;
             }
 
@@ -63,7 +66,7 @@ namespace webapi.Services
 
             else if ( results.IsThereWinner == true )  //checks if there is a winner
             {
-               
+
                 return results;
             }
 
@@ -89,9 +92,8 @@ namespace webapi.Services
         }
 
         public Result HasWinner( List<Ticket> ticketsList, Result results )  //verifies if there is a winner by the intersection
-                                                                             //between equals numbers in ticket.SelectedNumbers andresults.NumbersDrawn
-        {
-            results.WinnerTicketId = new List<int>();
+        {                                                                    //between equals numbers in ticket.SelectedNumbers andresults.NumbersDrawn
+
             bool hasSameNumbers;
 
             foreach ( Ticket ticket in ticketsList )
@@ -101,10 +103,10 @@ namespace webapi.Services
 
                 if ( hasSameNumbers == true ) //if 5 numbers are equal in both lists then change results attributes 
                 {
-                    int winnerId = ticket.Id;
+                    results.WinnerTicket.Add( ticket );
                     results.IsThereWinner = true;
-                    results.WinnerTicketId.Add( winnerId );
-
+                    results.Attempts = (results.NumbersDrawn.Count) - 4; 
+                    results.Winners = results.WinnerTicket.Count;
                 }
                 else 
                 {
