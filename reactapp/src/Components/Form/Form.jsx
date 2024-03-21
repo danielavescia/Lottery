@@ -2,7 +2,6 @@
 import "./form.css";
 import { useState } from 'react';
 import axios from 'axios';
-
 function Form() {
 
     const array = Array.from({ length: 5 }, () => null); //creating array that accepts 5 numbers for the lottery ticket
