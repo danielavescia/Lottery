@@ -4,15 +4,15 @@ namespace webapi.Services
 {
     public class TicketService
     {
-        private readonly List<Ticket> ticketList;
-        private readonly Result results;
+        //private readonly List<Ticket> ticketList;
+        //private readonly Result results;
       
 
-        public TicketService( List<Ticket> ticketList, Result results )   //DI
+        /*public TicketService( List<Ticket> ticketList, Result results )   //DI
         {
             this.ticketList = ticketList;
             this.results = results;
-        }
+        }*/
 
 
         public int CreateTicketId( List<Ticket> ticketList )
@@ -36,7 +36,7 @@ namespace webapi.Services
             {
                 do
                 {
-                    number = Utils.generateRandomNumber();
+                    number = Utils.GenerateRandomNumber();
                     numberIsRepeated = Utils.NumberIsRepeated( numbersDrawn, number );
 
                 } while ( numberIsRepeated == true );

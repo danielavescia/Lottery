@@ -54,7 +54,7 @@ namespace webapi.Data
                 using StreamReader reader = new( fileStream );
                 {
                     var json = await reader.ReadToEndAsync();
-                    return JsonConvert.DeserializeObject<Result>( json ); //Deserializes the JSON to a Result List.
+                    return  JsonConvert.DeserializeObject<Result>( json ); //Deserializes the JSON to a Result List.
                 }
 
             }
@@ -72,7 +72,7 @@ namespace webapi.Data
 
             else
             {
-                using StreamWriter file = File.CreateText( path );
+                await using StreamWriter file =  File.CreateText( path );
                 JsonSerializer serializer = new();
                 serializer.Serialize( file, tickets ); //serializes the Ticket List into JSON file.
 
@@ -91,7 +91,7 @@ namespace webapi.Data
 
             else
             {
-                using StreamWriter file = File.CreateText( path );
+                await using StreamWriter file = File.CreateText( path );
                 JsonSerializer serializer = new ();
                 serializer.Serialize( file, results ); //serializes the Result List into JSON file.
 

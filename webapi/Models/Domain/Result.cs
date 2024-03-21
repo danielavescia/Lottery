@@ -1,4 +1,6 @@
-﻿namespace webapi.Models.Domain
+﻿using System.Collections.Generic;
+
+namespace webapi.Models.Domain
 {
     public class Result
     {
@@ -8,11 +10,13 @@
         public int Attempts { get; set; }
         public int Winners { get; set; }
 
+        public List<int> NumbersSelectedMetric { get; set; } 
+
         public Result( ) 
         {
-             WinnerTicket = new List<Ticket>();
-             NumbersDrawn = new List<int>();
-             
+             WinnerTicket = new ();
+             NumbersDrawn = new ();
+             NumbersSelectedMetric = new ();
         }
 
     }

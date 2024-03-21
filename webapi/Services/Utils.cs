@@ -4,7 +4,7 @@ namespace webapi.Services
 {
     public class Utils
     {
-        public static int  generateRandomNumber()
+        public static int  GenerateRandomNumber()
         {
             Random random = new ();
             int number;
@@ -40,7 +40,7 @@ namespace webapi.Services
 
             do
             {
-                numberDrawan = generateRandomNumber();
+                numberDrawan = GenerateRandomNumber();
                 isRepeated = NumberIsRepeated( numbersDrawn, numberDrawan );
 
             } while ( isRepeated );

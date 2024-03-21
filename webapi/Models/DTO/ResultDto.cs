@@ -10,5 +10,6 @@ namespace webapi.Models.DTO
         public List<Ticket> WinnerTicket { get; set; } // list because more than one ticket can win
         public int Attempts { get; set; }
         public int Winners { get; set; }
+        public List<int> NumbersSelectedMetric { get; set; }
     }
 }

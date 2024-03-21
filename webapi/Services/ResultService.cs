@@ -1,4 +1,5 @@
 ﻿
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using webapi.Data;
@@ -9,19 +10,11 @@ namespace webapi.Services
 {
     public class ResultService
     {
-        private readonly DataPersistance dbContext; //An object of DataPersistance that simulates a dbContext
-        private readonly List<Ticket> ticketsList;
-        private readonly Result results;
-        public ResultService( DataPersistance dbContext, List<Ticket> ticketList, Result results )
-        {
-            this.dbContext = dbContext;
-            this.ticketsList = ticketsList;
-            this.results = results;
-        }
+       
 
         public Result GenerateResults( List<Ticket> ticketsList )
         {
-            int maxAttempts = 45;
+            int maxAttempts = 25;
             Result results = new();
             
 
@@ -30,7 +23,7 @@ namespace webapi.Services
                 throw new Exception( "Please, You need to bet first!" );
             }
 
-            else if ( ticketsList != null & results.NumbersDrawn == null )
+            else if ( ticketsList != null & results.NumbersDrawn.Count == 0 )
             {
                 GenerateFirstResult( results ); //If resultList is empty, then it will receive 5 different random numbers
                 HasWinner( ticketsList, results ); 
@@ -39,6 +32,8 @@ namespace webapi.Services
 
             else if ( results.IsThereWinner == true )  //checks if there is a winner
             {
+                //results.NumbersSelectedMetric = TicketOrderByNumberSelected( ticketsList );
+                results.Attempts = 1;
                 return results;
             }
 
@@ -51,7 +46,8 @@ namespace webapi.Services
 
             if ( maxAttempts == 0 ) //stop condition - when attempts ==0 
             {
-                results.Attempts = 25;
+                //results.NumbersSelectedMetric = TicketOrderByNumberSelected( ticketList );
+                results.Attempts = 26;
                 return results;
             }
 
@@ -66,7 +62,6 @@ namespace webapi.Services
 
             else if ( results.IsThereWinner == true )  //checks if there is a winner
             {
-
                 return results;
             }
 
@@ -77,11 +72,10 @@ namespace webapi.Services
         public void GenerateFirstResult(Result results )
         {
             int randomNumber;
-            bool isRepeated;
-            results.NumbersDrawn = new List<int>();
-
+           
             for ( int i = 0 ; i <= 4 ; i++ )
             {
+
                 randomNumber = Utils.GenerateAnotherNumber( results.NumbersDrawn );
                 results.NumbersDrawn.Add( randomNumber );
 
@@ -104,8 +98,9 @@ namespace webapi.Services
                 if ( hasSameNumbers == true ) //if 5 numbers are equal in both lists then change results attributes 
                 {
                     results.WinnerTicket.Add( ticket );
+                    results.WinnerTicket = TicketOrderByName( results.WinnerTicket );
                     results.IsThereWinner = true;
-                    results.Attempts = (results.NumbersDrawn.Count) - 4; 
+                    results.Attempts = (results.NumbersDrawn).Count - 4; 
                     results.Winners = results.WinnerTicket.Count;
                 }
                 else 
@@ -114,10 +109,40 @@ namespace webapi.Services
                 }
             }
            
-
             return results;
 
         }
+
+        public List<Ticket> TicketOrderByName( List<Ticket> ticket ) 
+        {
+            var ticketOrderByName = ticket.OrderBy( ticket => ticket.Name ).ToList(); //order the list by name ascending order
+
+            return ticketOrderByName;
+        }
+
+        /*
+        public List<int> TicketOrderByNumberSelected( List<Ticket> ticket )
+        {
+            List<int> results = new();
+
+
+            foreach ( Ticket t in ticket )
+            {
+                foreach ( int i in t.SelectedNumbers )
+                {
+                    results.Add( i ); //adds to a list
+                }
+            }
+
+            var groupNumbers = results.GroupBy( num => num ).ToList();
+
+
+            return groupNumbers;
+
+
+        }
+
+     */
     }
 
 }
